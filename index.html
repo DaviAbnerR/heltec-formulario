@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEL-TEC Formulário</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="form-container">
+    <img src="formulario_base.jpg" class="background" alt="formulário">
+
+    <input type="text" id="pedido" class="campo" style="top:60px; left:730px; width:80px; font-size: 20px;">
+    <input type="text" id="data" class="campo" style="top:105px; left:730px; width:82px;">
+    <input type="text" id="servico" class="campo" style="top:145px; left:270px; width:140px;">
+    <input type="text" id="garantia" class="campo" style="top:145px; left:485px; width:140px;">
+    <input type="text" id="telefone" class="campo" style="top:145px; left:660px; width:200px;">
+    <input type="text" id="cliente" class="campo" style="top:180px; left:265px; width:280px;">
+    <input type="text" id="endereco" class="campo" style="top:180px; left:580px; width:290px;">
+
+    <div id="itens"></div>
+
+    <input type="text" id="vendedor" class="campo" style="top:590px; left:125px; width:520px;">
+    <input type="text" id="total" class="campo readonly" style="top:590px; left:735px; width:120px; font-weight: bold;" readonly>
+
+    <div class="botoes">
+      <button onclick="gerarImagem()">✅ Concluir Pedido</button>
+      <div id="opcoes" style="display: none;">
+        <button onclick="compartilharWhatsApp()">📲 Enviar via WhatsApp</button>
+        <button onclick="baixarImagem()">📥 Baixar imagem</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
