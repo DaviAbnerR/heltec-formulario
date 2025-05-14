@@ -26,7 +26,7 @@ function criarItens() {
     valor.className = "campo readonly valor";
     valor.readOnly = true;
     valor.dataset.index = i;
-    valor.style = `top:${top}px; left:780px; width:75px; font-weight: bold;`;
+    valor.style = `top:${top}px; left:780px; width:80px; font-weight: bold;`;
     valor.style.opacity = "100";
     valor.style.backgroundColor = "transparent";
 
@@ -48,7 +48,7 @@ function calcularValores() {
 
     if (unid && preco && !isNaN(unid) && !isNaN(preco)) {
       const v = parseInt(unid) * parseFloat(preco);
-      valorInput.value = `R$ ${v.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+      valorInput.value = `${v.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
       total += v;
     } else {
       valorInput.value = "";
