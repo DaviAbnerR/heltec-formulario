@@ -27,7 +27,7 @@ function criarItens() {
     valor.readOnly = true;
     valor.dataset.index = i;
     valor.style = `top:${top}px; left:780px; width:80px; font-weight: bold;`;
-    valor.style.opacity = "100";
+    
     valor.style.backgroundColor = "transparent";
 
     itensDiv.appendChild(unid);
