@@ -27,7 +27,7 @@ body {
 }
 
 .campo.readonly {
-  
+  background: transparent;
   pointer-events: none;
 }
 
