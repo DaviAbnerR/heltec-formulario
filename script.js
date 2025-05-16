@@ -60,25 +60,58 @@ function calcularValores() {
   
 }
 
-function riscarLinhas() {
-  for (let i = 0; i < 12; i++) {
-    const desc = document.querySelectorAll(".campo")[i * 4 + 2]; // índice do campo Discriminação
-    if (desc && desc.value.trim() === "") {
-      // Adiciona uma linha horizontal com CSS (pelo border)
-      desc.style.borderBottom = "1px solid black";
-    } else {
-      // Remove qualquer traço anterior, se houver
-      desc.style.borderBottom = "1px solid #ccc";
-    }
-  }
+function riscarLinhaUnicaDiagonal() {
+  // Remove riscos anteriores
+  document.querySelectorAll(".risco-diagonal").forEach(el => el.remove());
+
+  const descricoes = Array.from(document.querySelectorAll(".desc"))
+    .filter(desc => desc.value.trim() === "");
+
+  if (descricoes.length === 0) return;
+
+  const container = document.querySelector(".form-container");
+
+  // Ponto de partida: meio esquerdo do 1º campo vazio
+  const primeiro = descricoes[0];
+  const ultimo = descricoes[descricoes.length - 1];
+
+  const startX = primeiro.offsetLeft;
+  const startY = primeiro.offsetTop + primeiro.offsetHeight / 2;
+
+  const endX = ultimo.offsetLeft + ultimo.offsetWidth;
+  const endY = ultimo.offsetTop + ultimo.offsetHeight / 2;
+
+  const deltaX = endX - startX;
+  const deltaY = endY - startY;
+  const comprimento = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+  const angulo = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+  const linha = document.createElement("div");
+  linha.className = "risco-diagonal";
+  linha.style.position = "absolute";
+  linha.style.width = `${comprimento}px`;
+  linha.style.height = "2px";
+  linha.style.backgroundColor = "black";
+  linha.style.left = `${startX}px`;
+  linha.style.top = `${startY}px`;
+  linha.style.transform = `rotate(${angulo}deg)`;
+  linha.style.transformOrigin = "top left";
+  linha.style.pointerEvents = "none";
+  linha.style.zIndex = 10;
+
+  container.appendChild(linha);
 }
+
+
+
+
 
 function gerarImagem() {
   const form = document.querySelector(".form-container");
   const botoes = document.querySelector(".botoes");
 
   document.getElementById("opcoes").style.display = "block";
-  riscarLinhas(); // desenha o traço visivelmente
+  riscarLinhaUnicaDiagonal(); // desenha o traço visivelmente
 
   botoes.style.display = "none"; // esconde botões da captura
 
